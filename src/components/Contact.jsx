@@ -56,7 +56,10 @@ function Contact() {
   };
 
   return (
-    <section className="min-h-screen bg-black text-white flex items-center justify-center px-6 py-20">
+    <section
+      id="contact"
+      className="min-h-screen bg-black text-white flex items-center justify-center px-6 py-20"
+    >
       <div className="max-w-4xl w-full">
         {/* Heading */}
         <motion.h2

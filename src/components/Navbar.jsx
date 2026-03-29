@@ -24,13 +24,22 @@ function Navbar() {
 
       sections.forEach((section) => {
         if (section) {
-          const top = section.offsetTop - 100;
+          const top = section.offsetTop - 120;
           const height = section.offsetHeight;
+
           if (window.scrollY >= top && window.scrollY < top + height) {
             setActive(section.id);
           }
         }
       });
+
+      // detect bottom (for last section like contact)
+      if (
+        window.innerHeight + window.scrollY >=
+        document.body.offsetHeight - 10
+      ) {
+        setActive("contact");
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
