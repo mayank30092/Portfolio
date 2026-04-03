@@ -10,7 +10,10 @@ const PORT = process.env.PORT || 8080;
 // Middleware
 app.use(
   cors({
-    origin: ["https://portfolio-lake-nine-37.vercel.app"],
+    origin: [
+      "http://localhost:5173",
+      "https://portfolio-lake-nine-37.vercel.app",
+    ],
     methods: ["POST"],
   }),
 );

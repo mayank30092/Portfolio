@@ -25,7 +25,7 @@ function Contact() {
     setLoading(true);
 
     try {
-      const res = await fetch("https://portfolio-stiw.onrender.com", {
+      const res = await fetch("https://portfolio-stiw.onrender.com/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
