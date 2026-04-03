@@ -38,6 +38,13 @@ transporter.verify((error, success) => {
     console.log("Email server ready to send messages");
   }
 });
+/*---------------------------
+Health API
+----------------------------*/
+
+app.get("/health", (req, res) => {
+  res.send("Server running");
+});
 
 // -----------------------
 // Contact API Route
