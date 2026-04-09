@@ -12,6 +12,7 @@ function Contact() {
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -23,6 +24,8 @@ function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setSuccess(false);
+    setError(false);
 
     try {
       const res = await fetch("https://portfolio-stiw.onrender.com/contact", {
@@ -37,7 +40,6 @@ function Contact() {
 
       if (data.code === 200) {
         setSuccess(true);
-
         setFormData({
           firstName: "",
           lastName: "",
@@ -45,11 +47,14 @@ function Contact() {
           phone: "",
           message: "",
         });
-
         setTimeout(() => setSuccess(false), 4000);
+      } else {
+        setError(true);
+        setTimeout(() => setError(false), 4000);
       }
-    } catch (error) {
-      alert("Something went wrong ❌");
+    } catch (err) {
+      setError(true);
+      setTimeout(() => setError(false), 4000);
     }
 
     setLoading(false);
@@ -72,7 +77,7 @@ function Contact() {
         </motion.h2>
 
         <p className="text-center text-gray-400 mb-12">
-          Have a project idea or collaboration opportunity? Let’s build
+          Have a project idea or collaboration opportunity? Let's build
           something amazing together.
         </p>
 
@@ -92,18 +97,19 @@ function Contact() {
               placeholder="First Name"
               value={formData.firstName}
               onChange={handleChange}
+              disabled={loading}
               required
-              className="bg-gray-800 p-3 rounded-lg outline-none focus:ring-2 focus:ring-purple-600"
+              className="bg-gray-800 p-3 rounded-lg outline-none focus:ring-2 focus:ring-purple-600 disabled:opacity-50"
             />
-
             <input
               type="text"
               name="lastName"
               placeholder="Last Name"
               value={formData.lastName}
               onChange={handleChange}
+              disabled={loading}
               required
-              className="bg-gray-800 p-3 rounded-lg outline-none focus:ring-2 focus:ring-purple-600"
+              className="bg-gray-800 p-3 rounded-lg outline-none focus:ring-2 focus:ring-purple-600 disabled:opacity-50"
             />
           </div>
 
@@ -114,8 +120,9 @@ function Contact() {
             placeholder="Email Address"
             value={formData.email}
             onChange={handleChange}
+            disabled={loading}
             required
-            className="w-full bg-gray-800 p-3 rounded-lg outline-none focus:ring-2 focus:ring-purple-600"
+            className="w-full bg-gray-800 p-3 rounded-lg outline-none focus:ring-2 focus:ring-purple-600 disabled:opacity-50"
           />
 
           {/* Phone */}
@@ -125,7 +132,8 @@ function Contact() {
             placeholder="Phone Number"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full bg-gray-800 p-3 rounded-lg outline-none focus:ring-2 focus:ring-purple-600"
+            disabled={loading}
+            className="w-full bg-gray-800 p-3 rounded-lg outline-none focus:ring-2 focus:ring-purple-600 disabled:opacity-50"
           />
 
           {/* Message */}
@@ -135,15 +143,16 @@ function Contact() {
             placeholder="Write your message..."
             value={formData.message}
             onChange={handleChange}
+            disabled={loading}
             required
-            className="w-full bg-gray-800 p-3 rounded-lg outline-none focus:ring-2 focus:ring-purple-600"
+            className="w-full bg-gray-800 p-3 rounded-lg outline-none focus:ring-2 focus:ring-purple-600 disabled:opacity-50"
           />
 
           {/* Button */}
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-purple-600 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-all duration-300"
+            className="w-full bg-purple-600 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? "Sending..." : "Send Message"}
           </button>
@@ -156,6 +165,17 @@ function Contact() {
               className="text-green-400 text-center font-medium"
             >
               Message sent successfully 🚀
+            </motion.p>
+          )}
+
+          {/* Error Message */}
+          {error && (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-red-400 text-center font-medium"
+            >
+              Something went wrong. Please try again ❌
             </motion.p>
           )}
         </motion.form>
