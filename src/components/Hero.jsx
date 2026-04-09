@@ -51,7 +51,7 @@ function Hero() {
           Contact Me
         </a>
         <a
-          href="/Mayank_Mittal_CV.pdf"
+          href="/mayank_frontend_cv.pdf"
           download="Mayank_Mittal_CV.pdf"
           className="px-8 py-3 border border-purple-500 text-purple-400 rounded-full font-semibold hover:bg-purple-900 transition"
         >
