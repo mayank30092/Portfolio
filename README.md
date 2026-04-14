@@ -48,7 +48,7 @@ The website includes a **fully functional backend contact system** where visitor
 * ✔️ Modern responsive UI
 * ✔️ Built with **React + Vite**
 * ✔️ Secure backend API using **Node.js & Express**
-* ✔️ Contact form integrated with **Nodemailer**
+* ✔️ Contact form integrated with **Resend**
 * ✔️ Deployed using **Vercel and Render**
 * ✔️ Optimized performance and clean design
 
@@ -57,7 +57,7 @@ The website includes a **fully functional backend contact system** where visitor
 # 🛠️ Tech Stack
 
 <p align="center">
-<img src="https://skillicons.dev/icons?i=react,nodejs,express,js,html,css,vite,git,github" />
+<img src="https://skillicons.dev/icons?i=react,nodejs,express,js,html,css,vite,git,github,tailwind" />
 </p>
 
 ---
@@ -133,6 +133,8 @@ Create a `.env` file inside the backend directory.
 EMAIL_USER=your_email@gmail.com
 EMAIL_PASS=your_app_password
 RECEIVER_EMAIL=your_email@gmail.com
+PORT=your_port_no
+RESEND_API_KEY=your_API_Key
 ```
 
 ---
