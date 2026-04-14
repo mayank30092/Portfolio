@@ -24,22 +24,22 @@ function About() {
           transition={{ duration: 0.8 }}
         >
           <p className="text-lg text-gray-300 leading-relaxed mb-6">
-            I'm a Full Stack MERN Developer who enjoys building scalable,
-            real-world web applications with clean architecture and secure
-            authentication systems.
+            I'm a frontend-focused developer passionate about building modern,
+            responsive, and user-friendly web applications using React,
+            JavaScript, and Tailwind CSS.
           </p>
 
-          <p className="text-gray-400 leading-relaxed mb-6">
-            I have built platforms like a college event management system, a
-            food redistribution platform to reduce wastage, and an
-            Airbnb-inspired rental booking application — all fully deployed and
-            production-ready.
+          <p className="text-gray-300 leading-relaxed mb-6">
+            I enjoy transforming complex ideas into clean, intuitive user
+            interfaces and building seamless user experiences. My work focuses
+            on component-based architecture, responsive layouts, and smooth
+            interactions that enhance usability.
           </p>
 
-          <p className="text-gray-400 leading-relaxed">
-            I focus on writing maintainable backend logic, designing RESTful
-            APIs, managing databases efficiently, and creating responsive,
-            user-friendly interfaces using modern frontend tools.
+          <p className="text-gray-300 leading-relaxed">
+            Along with frontend development, I also have experience integrating
+            REST APIs and working with backend technologies like Node.js and
+            MongoDB, which helps me build complete and scalable applications.
           </p>
         </motion.div>
 
@@ -51,7 +51,7 @@ function About() {
           className="grid grid-cols-2 gap-6"
         >
           <div className="bg-gray-900 p-6 rounded-2xl text-center border border-gray-800">
-            <h3 className="text-3xl font-bold text-purple-400">5+</h3>
+            <h3 className="text-3xl font-bold text-purple-400">6+</h3>
             <p className="text-gray-400 mt-2">Major Full Stack Projects</p>
           </div>
 
