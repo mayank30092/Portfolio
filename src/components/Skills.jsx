@@ -72,7 +72,7 @@ function Skills() {
   return (
     <section
       id="skills"
-      className="min-h-screen bg-black text-white px-6 md:px-20 py-24"
+      className="min-h-screen bg-black text-white px-4 md:px-20 py-24"
     >
       {/* Title */}
       <motion.h2
