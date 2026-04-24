@@ -17,9 +17,7 @@
 ---
 
 ![React](https://img.shields.io/badge/React-Frontend-blue)
-![Node.js](https://img.shields.io/badge/Node.js-Backend-green)
 ![Vercel](https://img.shields.io/badge/Deploy-Vercel-black)
-![Render](https://img.shields.io/badge/Backend-Render-purple)
 ![Visitors](https://komarev.com/ghpvc/?username=mayank30092\&color=blue)
 
 ---
@@ -47,7 +45,7 @@ The website includes a **fully functional backend contact system** where visitor
 
 * ✔️ Modern responsive UI
 * ✔️ Built with **React + Vite**
-* ✔️ Secure backend API using **Node.js & Express**
+* ✔️ Serverless
 * ✔️ Contact form integrated with **Resend**
 * ✔️ Deployed using **Vercel and Render**
 * ✔️ Optimized performance and clean design
@@ -57,7 +55,7 @@ The website includes a **fully functional backend contact system** where visitor
 # 🛠️ Tech Stack
 
 <p align="center">
-<img src="https://skillicons.dev/icons?i=react,nodejs,express,js,html,css,vite,git,github,tailwind" />
+<img src="https://skillicons.dev/icons?i=react,js,html,css,vite,git,github,tailwind" />
 </p>
 
 ---
@@ -78,9 +76,12 @@ portfolio
 │   ├── assets
 │   └── App.jsx
 │
-├── server
+├── api
 │   ├── server.js
-│   └── package.json
+│   └── health.js
+│
+├── lib
+│    ├── rateLimit.js
 │
 └── README.md
 ```
@@ -113,7 +114,7 @@ portfolio
 
 ### 🌐 Portfolio Website
 
-A modern full-stack portfolio built using **React, Node.js, Express, and Nodemailer**.
+A modern portfolio built using **React,TailwindCss and Resend**.
 
 ### ☁️ Weather App
 
@@ -130,10 +131,7 @@ An IoT-based smart parking system using **ESP32 sensors and a web dashboard**.
 Create a `.env` file inside the backend directory.
 
 ```env
-EMAIL_USER=your_email@gmail.com
-EMAIL_PASS=your_app_password
 RECEIVER_EMAIL=your_email@gmail.com
-PORT=your_port_no
 RESEND_API_KEY=your_API_Key
 ```
 
@@ -149,22 +147,10 @@ git clone https://github.com/mayank30092/YOUR_REPOSITORY.git
 
 ### Install dependencies
 
-Frontend
-
 ```bash
-cd frontend
 npm install
 npm run dev
 ```
-
-Backend
-
-```bash
-cd server
-npm install
-node server.js
-```
-
 ---
 
 # 👨‍💻 Author
