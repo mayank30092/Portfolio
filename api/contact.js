@@ -1,43 +1,53 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const { Resend } = require("resend");
+import { Resend } from "resend";
+import { rateLimit } from "../lib/rateLimit.js";
 
-const app = express();
-const PORT = process.env.PORT || 8080;
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Middleware
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "https://portfolio-lake-nine-37.vercel.app",
-    ],
-    methods: ["GET", "POST"],
-  }),
-);
-app.use(express.json());
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({
+      code: 405,
+      status: "Method not allowed",
+    });
+  }
 
-/*---------------------------
-Health API
-----------------------------*/
-app.get("/health", (req, res) => {
-  res.send("Server running");
-});
+  const ip =
+    req.headers["x-forwarded-for"]?.split(",")[0]?.trim() ||
+    req.socket?.remoteAddress ||
+    "unknown";
 
-// -----------------------
-// Contact API Route
-// -----------------------
-app.post("/contact", async (req, res) => {
+  const allowed = rateLimit(ip);
+
+  if (!allowed) {
+    return res.status(429).json({
+      code: 429,
+      status: "Too many requests. Please try again later.",
+    });
+  }
+
   try {
     const { firstName, lastName, email, phone, message } = req.body;
 
-    // Basic validation
+    // Validation
     if (!firstName || !lastName || !email || !message) {
       return res.status(400).json({
         code: 400,
         status: "Missing required fields",
+      });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({
+        code: 400,
+        status: "Invalid email format",
+      });
+    }
+
+    if (message.length > 1000) {
+      return res.status(400).json({
+        code: 400,
+        status: "Message too long (max 1000 characters)",
       });
     }
 
@@ -57,22 +67,16 @@ app.post("/contact", async (req, res) => {
       `,
     });
 
-    res.status(200).json({
+    return res.status(200).json({
       code: 200,
       status: "Message sent successfully",
     });
   } catch (error) {
     console.error("Email error:", error);
-    res.status(500).json({
+
+    return res.status(500).json({
       code: 500,
       status: "Error sending email",
     });
   }
-});
-
-// -----------------------
-// Server Start
-// -----------------------
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+}

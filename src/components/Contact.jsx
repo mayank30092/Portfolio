@@ -12,7 +12,7 @@ function Contact() {
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -25,10 +25,10 @@ function Contact() {
     e.preventDefault();
     setLoading(true);
     setSuccess(false);
-    setError(false);
+    setErrorMsg("");
 
     try {
-      const res = await fetch("https://portfolio-stiw.onrender.com/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,8 +38,10 @@ function Contact() {
 
       const data = await res.json();
 
-      if (data.code === 200) {
+      if (res.ok) {
         setSuccess(true);
+        setErrorMsg("");
+
         setFormData({
           firstName: "",
           lastName: "",
@@ -47,14 +49,15 @@ function Contact() {
           phone: "",
           message: "",
         });
+
         setTimeout(() => setSuccess(false), 4000);
       } else {
-        setError(true);
-        setTimeout(() => setError(false), 4000);
+        setErrorMsg(data.status || "Something went wrong");
+        setTimeout(() => setErrorMsg(""), 4000);
       }
     } catch (err) {
-      setError(true);
-      setTimeout(() => setError(false), 4000);
+      setErrorMsg("Server error. Please try again later.");
+      setTimeout(() => setErrorMsg(""), 4000);
     }
 
     setLoading(false);
@@ -81,7 +84,7 @@ function Contact() {
           something amazing together.
         </p>
 
-        {/* Contact Form */}
+        {/* Form */}
         <motion.form
           onSubmit={handleSubmit}
           initial={{ opacity: 0, y: 40 }}
@@ -89,7 +92,7 @@ function Contact() {
           transition={{ duration: 0.7 }}
           className="bg-gray-900 border border-gray-800 p-8 rounded-2xl shadow-lg space-y-6"
         >
-          {/* Name Fields */}
+          {/* Name */}
           <div className="grid md:grid-cols-2 gap-4">
             <input
               type="text"
@@ -145,6 +148,7 @@ function Contact() {
             onChange={handleChange}
             disabled={loading}
             required
+            maxLength={1000}
             className="w-full bg-gray-800 p-3 rounded-lg outline-none focus:ring-2 focus:ring-purple-600 disabled:opacity-50"
           />
 
@@ -157,7 +161,7 @@ function Contact() {
             {loading ? "Sending..." : "Send Message"}
           </button>
 
-          {/* Success Message */}
+          {/* Success */}
           {success && (
             <motion.p
               initial={{ opacity: 0 }}
@@ -168,14 +172,14 @@ function Contact() {
             </motion.p>
           )}
 
-          {/* Error Message */}
-          {error && (
+          {/* Error */}
+          {errorMsg && (
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="text-red-400 text-center font-medium"
             >
-              Something went wrong. Please try again ❌
+              {errorMsg}
             </motion.p>
           )}
         </motion.form>
