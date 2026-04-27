@@ -28,10 +28,10 @@ function Hero() {
         transition={{ delay: 0.5 }}
         className="mt-6 text-lg md:text-xl text-gray-400 max-w-2xl"
       >
-        Frontend Developer specializing in building modern, responsive web
-        applications with React, JavaScript, and Tailwind CSS. Passionate about
-        creating clean UI, smooth user experiences, and scalable frontend
-        architectures.
+        Full Stack Developer specializing in building modern, responsive web
+        applications with React, JavaScript, Node.js, Express, and Tailwind CSS.
+        Passionate about creating clean UI, seamless user experiences, scalable
+        backend systems, and efficient full-stack architectures.
       </motion.p>
 
       {/* Main Buttons */}
@@ -56,7 +56,7 @@ function Hero() {
         </a>
 
         <a
-          href="/MayankMittal_Frontend.pdf"
+          href="/MayankMittal_FullStack.pdf"
           download="Mayank_Mittal_Resume.pdf"
           className="px-8 py-3 border border-purple-500 text-purple-400 rounded-full font-semibold hover:bg-purple-900 transition"
         >

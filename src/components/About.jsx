@@ -24,22 +24,24 @@ function About() {
           transition={{ duration: 0.8 }}
         >
           <p className="text-lg text-gray-300 leading-relaxed mb-6">
-            I'm a frontend-focused developer passionate about building modern,
+            I'm a full-stack developer passionate about building modern,
             responsive, and user-friendly web applications using React,
-            JavaScript, and Tailwind CSS.
+            JavaScript, Node.js, Express, MongoDB, and Tailwind CSS.
           </p>
 
           <p className="text-gray-300 leading-relaxed mb-6">
             I enjoy transforming complex ideas into clean, intuitive user
-            interfaces and building seamless user experiences. My work focuses
-            on component-based architecture, responsive layouts, and smooth
-            interactions that enhance usability.
+            interfaces while also developing robust backend systems that power
+            seamless user experiences. My work focuses on scalable architecture,
+            responsive design, efficient APIs, and smooth interactions that
+            enhance usability.
           </p>
 
           <p className="text-gray-300 leading-relaxed">
-            Along with frontend development, I also have experience integrating
-            REST APIs and working with backend technologies like Node.js and
-            MongoDB, which helps me build complete and scalable applications.
+            From crafting dynamic frontend experiences to building secure
+            backend services and managing databases, I enjoy working across the
+            full development stack to create complete, scalable, and
+            high-performance applications.
           </p>
         </motion.div>
 
